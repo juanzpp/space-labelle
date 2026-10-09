@@ -146,4 +146,69 @@ N('v-cats').innerHTML='';renderCatalog();renderServices();if(location.hash==='#a
  document.addEventListener('change',function(){setTimeout(motion,60)});
  window.addEventListener('load',function(){setTimeout(motion,100)});
 })();
+</script><style id="proMaxUi">
+/* Space LaBelle / boutique design system - editorial warmth, restrained motion */
+body.public-v2{background:#fcf8f7!important}
+#publicV2{--rose:#ac5977;--wine:#4e2d3d;--pink:#f5e9eb;--paper:#fffaf8;--edge:#ebdee0;color:#4e2d3d!important;max-width:1190px!important;padding:14px clamp(16px,3vw,44px) 90px!important}
+#publicV2 .head{border-bottom:1px solid rgba(139,79,100,.13);padding:18px 0 22px!important;position:relative}
+#publicV2 .head::after{content:'ATELIÊ DE BELEZA';font:600 10px 'DM Sans',sans-serif;letter-spacing:.23em;color:#bd8e9c;position:absolute;right:0;bottom:9px}
+#publicV2 .wordmark{font-family:'Playfair Display',Georgia,serif;font-weight:600!important;font-size:clamp(30px,4vw,42px)!important;letter-spacing:-.06em!important}
+#publicV2 .slogan{letter-spacing:.28em!important;font-size:9px!important;text-align:left!important;padding-left:4px}
+#publicV2 nav{position:sticky;top:0;z-index:19;background:rgba(252,248,247,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:16px 0 18px!important;gap:8px!important}
+#publicV2 nav button{font-size:13px;border-color:transparent!important;background:transparent!important;border-radius:13px!important;padding:11px 16px!important;transition:background .2s,transform .2s,color .2s}
+#publicV2 nav button.sel{background:#68394f!important;color:white!important;box-shadow:0 8px 19px #68394f2a}
+#publicV2 nav button:not(.sel):hover{background:#f3e6e9!important;transform:translateY(-1px)}
+#publicV2 .view h1{font-size:clamp(35px,5.8vw,58px)!important;line-height:1.07!important;margin:29px 0 10px!important;letter-spacing:-.06em!important}
+#publicV2 .view h1::after{content:'';display:block;width:48px;height:2px;border-radius:2px;background:#ca97a6;margin:17px 0 0}
+#publicV2 p.intro{font-size:15px!important;line-height:1.7!important;max-width:640px;margin-bottom:26px!important}
+#publicV2 .search{background:white!important;border:1px solid #e9dadf!important;box-shadow:0 8px 22px #56304108;padding:17px 20px!important;border-radius:16px!important;outline:none;transition:border-color .2s,box-shadow .2s}
+#publicV2 .search:focus{border-color:#bf8096!important;box-shadow:0 0 0 4px #d9a7ba28}
+#publicV2 .chips{margin:20px 0 23px!important;gap:9px!important}
+#publicV2 .chips button{font-size:12px;padding:10px 15px!important;border:1px solid #ebdce0!important;transition:transform .2s,border-color .2s,background .2s}
+#publicV2 .chips button.sel{background:#66364d!important;border-color:#66364d!important;box-shadow:0 5px 12px #693f5120}
+#publicV2 .chips button:not(.sel):hover{border-color:#cb9aa9!important;transform:translateY(-1px)}
+#publicV2 .tiles{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important}
+#publicV2 .tilecard{border:1px solid #ebdde0!important;border-radius:23px!important;box-shadow:0 6px 14px #58384909,0 18px 46px #58384908!important;overflow:hidden;transform:translateZ(0);transition:border-color .25s,box-shadow .3s}
+#publicV2 .tilecard:hover{border-color:#d8b9c3!important;box-shadow:0 9px 22px #5838490d,0 24px 55px #58384914!important}
+#publicV2 .picture{height:240px!important;overflow:hidden}
+#publicV2 .picture img{transition:transform .75s cubic-bezier(.2,.7,.2,1);will-change:transform}
+#publicV2 .tilecard:hover .picture img{transform:scale(1.055)}
+#publicV2 .picture::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#32172223,transparent 33%)}
+#publicV2 .picture .heart{z-index:1;box-shadow:0 4px 18px #00000012;background:#fffdfaee;backdrop-filter:blur(6px);transition:transform .2s,background .2s}
+#publicV2 .picture .heart:hover{transform:scale(1.1);background:#fff}
+#publicV2 .info{padding:18px!important}
+#publicV2 .info strong{font-size:21px!important;line-height:1.18}
+#publicV2 .info .micro{margin:9px 0 14px;min-height:20px;font-size:12px}
+#publicV2 .cta{background:linear-gradient(105deg,#a45b75,#7d465e)!important;border-radius:13px!important;box-shadow:0 5px 12px #873d5c25;min-height:46px;transition:filter .2s,box-shadow .2s,transform .2s}
+#publicV2 .cta:hover{filter:brightness(1.06);box-shadow:0 8px 19px #873d5c37;transform:translateY(-2px)}
+#publicV2 .cta:active{transform:scale(.985)}
+#publicV2 .cta.secondary{background:#f5e9ec!important;color:#6d4154!important;box-shadow:none}
+#publicV2 .panel{border-radius:26px!important;border-color:#eadbe0!important;box-shadow:0 8px 30px #603a4b0b;padding:clamp(17px,3vw,30px)!important}
+#publicV2 .panel h2{font-size:25px!important;letter-spacing:-.04em}
+#publicV2 .service-choice{background:linear-gradient(120deg,#fff8f9,#f8edf1)!important;border-radius:20px!important;padding:15px!important}
+#publicV2 .service-choice img{width:86px!important;height:86px!important;border-radius:16px!important}
+#publicV2 .calendar{gap:5px!important}
+#publicV2 .calendar button{border-radius:13px!important;transition:background .17s,color .17s,transform .17s}
+#publicV2 .calendar button.chosen{background:#8d506a!important;box-shadow:0 6px 14px #8d506a35}
+#publicV2 .calendar button:not(:disabled):hover{background:#f4e4ea;transform:scale(1.06)}
+#publicV2 .slots{gap:9px!important}
+#publicV2 .slots button{border-radius:12px!important;min-height:43px;font-weight:600;transition:transform .15s,background .17s}
+#publicV2 .slots button:not(:disabled):hover{transform:translateY(-2px);background:#f6e7ec}
+#publicV2 .slots button.chosen{background:#8d506a!important;box-shadow:0 6px 14px #8d506a24}
+#publicV2 .summary{background:linear-gradient(145deg,#fff5f6,#f6e6ec)!important;border-radius:20px!important;border:1px solid #efdce3}
+#publicV2 input.field:focus,#publicV2 select.field:focus{outline:3px solid #e4b3c155;border-color:#b2778e!important}
+#publicV2 .success{box-shadow:0 16px 60px #673c4a12;border-radius:32px!important}
+@media(max-width:850px){#publicV2 .tiles{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:13px!important}#publicV2 .picture{height:195px!important}}
+@media(max-width:500px){#publicV2 .head::after{font-size:8px}#publicV2 .tiles{gap:10px!important}#publicV2 .picture{height:148px!important}#publicV2 .info{padding:12px!important}#publicV2 .info strong{font-size:17px!important}#publicV2 nav{gap:4px!important}#publicV2 nav button{padding:10px 12px!important}#publicV2 .view h1{font-size:37px!important;margin-top:18px!important}}
+@media(prefers-reduced-motion:reduce){#publicV2 *,#publicV2 *::before,#publicV2 *::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+<script type="module" id="motionWebEnhancements">
+import {animate,stagger} from 'https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm';
+const base=document.getElementById('publicV2');
+if(base && !(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){
+let observed=new WeakSet();
+function intro(){if(!document.body.classList.contains('public-v2'))return;let view=Array.from(base.querySelectorAll('.view')).find(el=>!el.hidden);if(!view)return;let cards=Array.from(view.querySelectorAll('.tilecard')).filter(el=>!observed.has(el));cards.forEach(el=>observed.add(el));if(cards.length)animate(cards,{opacity:[0,1],y:[22,0],scale:[.98,1]},{duration:.5,delay:stagger(.045),easing:[.2,.65,.2,1]});}
+const observer=new MutationObserver(()=>requestAnimationFrame(intro));observer.observe(base,{subtree:true,childList:true,attributes:true,attributeFilter:['hidden']});intro();
+base.addEventListener('pointerdown',e=>{let el=e.target.closest('button');if(!el)return;animate(el,{scale:[1,.96,1]},{duration:.25})});
+}
 </script></body></html>
