@@ -8,17 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
+      - uses: oven-sh/setup-bun@v2
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: bun install
       - name: Verify required image files
         run: |
           test -f src/assets/nail-hero.jpg
           test -f src/assets/nails-cherry.jpg
           test -f src/assets/nails-french.jpg
       - name: Build
-        run: npm run build
+        run: bun run build
       - name: Unit tests
-        run: npm test
+        run: bun run test
