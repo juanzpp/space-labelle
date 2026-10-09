@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type RefObject } from 'react';
-import poster from '@/assets/nail-hero.jpg';
+const poster = 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=900&q=85';
 import { getOrbitFrame } from '@/lib/scroll-stages';
 import { ATLAS_COLUMNS, ATLAS_FRAMES, orbitAtlases } from '@/lib/orbit-atlases';
 import { HD_ATLAS_FRAMES, HD_ATLAS_COLUMNS, HD_FRAME_WIDTH, HD_FRAME_HEIGHT, hdOrbitAtlases } from '@/lib/orbit-hd-atlases';
