@@ -1,0 +1,20 @@
+import a0 from '@/assets/orbit60-0.webp.asset.json';
+import a1 from '@/assets/orbit60-1.webp.asset.json';
+import a2 from '@/assets/orbit60-2.webp.asset.json';
+import a3 from '@/assets/orbit60-3.webp.asset.json';
+import a4 from '@/assets/orbit60-4.webp.asset.json';
+import a5 from '@/assets/orbit60-5.webp.asset.json';
+import a6 from '@/assets/orbit60-6.webp.asset.json';
+import a7 from '@/assets/orbit60-7.webp.asset.json';
+import a8 from '@/assets/orbit60-8.webp.asset.json';
+import a9 from '@/assets/orbit60-9.webp.asset.json';
+import a10 from '@/assets/orbit60-10.webp.asset.json';
+import a11 from '@/assets/orbit60-11.webp.asset.json';
+import a12 from '@/assets/orbit60-12.webp.asset.json';
+import a13 from '@/assets/orbit60-13.webp.asset.json';
+import a14 from '@/assets/orbit60-14.webp.asset.json';
+import a15 from '@/assets/orbit60-15.webp.asset.json';
+
+export const orbitAtlases = [a0,a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13,a14,a15];
+export const ATLAS_FRAMES = 30;
+export const ATLAS_COLUMNS = 5;

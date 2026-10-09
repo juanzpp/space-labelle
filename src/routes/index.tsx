@@ -1,0 +1,25 @@
+import {createFileRoute, Link} from '@tanstack/react-router';
+import {useEffect, useRef, useState} from 'react';
+import {ArrowDown, ArrowUpRight, Sparkles, MoveDown} from 'lucide-react';
+import {Button} from '@/components/ui/button';
+import {Catalog, Services, BookingBand, StudioFooter, StudioHeader, Wordmark} from '@/components/studio/studio';
+import {studioHead} from '@/components/studio/data';
+import {getScrollStage} from '@/lib/scroll-stages';
+import {HandOrbit} from '@/components/studio/hand-orbit';
+import {StudioChoices} from '@/components/studio/studio-choices';
+import {StudioMotion, useStageMotion} from '@/components/studio/studio-motion';
+export const Route=createFileRoute('/')({head:()=>studioHead('Space LaBelle — Nail design, sua essência em cada detalhe','Uma experiência de nail design que se revela a cada movimento. Descubra estilos, cuidados e seu próximo momento na Space LaBelle.'),component:Index});
+const stories=[
+ {eyebrow:'Sua essência, em cada detalhe',first:'Nail art.',second:'Sua essência.',description:'Mais do que unhas bonitas. Uma pequena expressão de quem você é.'},
+ {eyebrow:'Beleza que começa no cuidado',first:'O cuidado.',second:'Antes de tudo.',description:'Cada detalhe importa. Do primeiro toque ao último acabamento.'},
+ {eyebrow:'Seu estilo não tem limites',first:'Delicada.',second:'Ou nada óbvia.',description:'Um clássico reinventado. Uma cor inesperada. Uma criação só sua.'},
+ {eyebrow:'Pequenos detalhes, grandes histórias',first:'Feitas à mão.',second:'Feitas pra você.',description:'Arte, técnica e um olhar atento à sua personalidade.'},
+ {eyebrow:'Um momento só seu',first:'Uma pausa.',second:'Um novo brilho.',description:'Escolha seu estilo. Descubra seu cuidado. Encontre seu momento.'},
+ {eyebrow:'Bem-vinda ao universo Space LaBelle',first:'Seu estilo.',second:'Começa aqui.',description:'Inspiração, cuidado e criatividade. Tudo no seu tempo.'},
+ ] as const;
+function Index(){const[stage,setStage]=useState(0);const journey=useRef<HTMLDivElement>(null);const complete=useRef<HTMLDivElement>(null);const progress=useRef(0);const scene=useRef<HTMLElement>(null);
+ useEffect(()=>{let frame=0;const update=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{const el=journey.current;if(el){const viewport=el.clientHeight/6;const distance=-el.getBoundingClientRect().top;progress.current=Math.min(1,Math.max(0,distance/(viewport*5)));setStage(getScrollStage(distance,viewport));const exit=Math.min(1,Math.max(0,(distance/viewport-4.3)/.7));scene.current?.style.setProperty("--journey-exit",String(exit));complete.current?.style.setProperty("--site-reveal",String(exit))}})};update();window.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);return()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',update);window.removeEventListener('resize',update)}},[]);
+ const storyScope=useStageMotion(stage);
+ const story=stories[stage]??stories[0];const skip=()=>complete.current?.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
+  return <main><div className="scroll-journey" ref={journey}><section ref={scene} className="journey-frame" data-stage={stage} aria-label="Uma descoberta em cinco momentos"><HandOrbit progress={progress}/><header className="hero-header"><Wordmark/>{stage>=2?<nav className="hero-reveal-nav" aria-label="Explore o studio"><Link to="/catalogo">Catálogo</Link><Link to="/servicos">Serviços</Link>{stage>=4&&<Button variant="studio" asChild><Link to="/agendamento">Agendar <ArrowUpRight/></Link></Button>}</nav>:<span className="hero-studio-label">Arte. Cuidado. Você.</span>}</header><div className="hero-copy" ref={storyScope}><div className="stage-content" key={stage}><span className="eyebrow">{story.eyebrow}</span><h1>{story.first}<br/><em>{story.second}</em></h1><p>{story.description}</p>{stage>=3&&<Button variant="studio" onClick={skip}>Descobrir o studio <ArrowUpRight/></Button>}</div></div><div className="hero-caption"><Sparkles size={12}/> Pequenos detalhes. Infinitas possibilidades.</div><div className="journey-bottom"><div className="scroll-prompt"><MoveDown size={22}/><span>{stage<5?'A beleza está no caminho':'Seu universo está logo abaixo'}</span></div><div className="stage-indicator"><span>0{Math.min(stage+1,5)} / 05</span><div className="stage-dots" aria-label={`Etapa ${Math.min(stage+1,5)} de 5`}>{[0,1,2,3,4].map(i=><span key={i} className={`stage-dot ${stage>=i?'active':''}`}/>)}</div><Button variant="quiet" size="icon" aria-label="Ir direto ao site completo" title="Ir direto ao studio" onClick={skip}><ArrowDown size={16}/></Button></div></div><div className="journey-ribbon"><span>Feito à mão</span><Sparkles/><span>Com intenção</span><Sparkles/><span>Do seu jeito</span><Sparkles/><span>Space LaBelle studio</span></div></section></div><div className="studio-reveal" ref={complete}><StudioHeader/><StudioMotion><StudioChoices/><Catalog/><Services/><BookingBand/></StudioMotion><StudioFooter/></div></main>
+}
