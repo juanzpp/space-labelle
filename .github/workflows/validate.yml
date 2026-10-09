@@ -1,0 +1,24 @@
+name: Space LaBelle validation
+on:
+  push:
+    branches: [migration-naile-source]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Verify required image files
+        run: |
+          test -f src/assets/nail-hero.jpg
+          test -f src/assets/nails-cherry.jpg
+          test -f src/assets/nails-french.jpg
+      - name: Build
+        run: npm run build
+      - name: Unit tests
+        run: npm test
