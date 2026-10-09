@@ -102,4 +102,45 @@ N('v-calendar-download').onclick=()=>{if(!last)return;let a=new Date(last.date+'
 N('v-reschedule').onclick=()=>tab('agendar');N('v-back').onclick=()=>tab('catalogo');
 N('v-cats').innerHTML='';renderCatalog();renderServices();if(location.hash==='#admin'){document.body.classList.remove('public-v2')}else{document.body.classList.add('public-v2')}window.addEventListener('hashchange',()=>document.body.classList.toggle('public-v2',location.hash!=='#admin'));
 })();
+</script><style>
+#laSplash{position:fixed;inset:0;z-index:99999;background:radial-gradient(circle at 45% 35%,#fffdfd,#f9e8ee 90%);display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+#laSplash.done{opacity:0;visibility:hidden;pointer-events:none}
+#laSplash .laInner{text-align:center;width:min(92vw,480px);position:relative}
+#laSplash .laUpper{font:700 12px 'DM Sans',sans-serif;letter-spacing:.5em;color:#b87c91;margin-bottom:12px}
+#laSplash .laSign{position:relative;margin:auto;width:min(85vw,410px);height:116px}
+#laSplash .laSign svg{display:block;width:100%;height:100%;overflow:visible}
+#laSplash .laSign text{font:italic 76px 'Playfair Display',Georgia,serif;fill:transparent;stroke:#98576e;stroke-width:1.5;stroke-dasharray:660;stroke-dashoffset:660;animation:laWrite 2.6s ease .15s forwards}
+#laSplash .laPen{position:absolute;width:86px;left:2%;top:40%;transform:rotate(-22deg);filter:drop-shadow(0 4px 5px #7b506443);animation:laMove 2.7s ease .15s forwards}
+#laSplash .laSub{font:600 10px 'DM Sans',sans-serif;letter-spacing:.27em;color:#a87587;margin-top:20px}
+#laSplash .laBar{height:2px;width:120px;background:#ead2db;margin:24px auto;overflow:hidden;border-radius:6px}
+#laSplash .laBar:after{content:'';display:block;height:100%;width:0;background:#b76e86;animation:laFill 2.7s ease forwards}
+@keyframes laWrite{to{stroke-dashoffset:0;fill:#98576e}}
+@keyframes laFill{to{width:100%}}
+@keyframes laMove{0%{left:2%;top:40%;opacity:0}12%{opacity:1}45%{left:37%;top:21%}75%{left:65%;top:50%}95%{left:83%;top:19%;opacity:1}100%{left:90%;top:9%;opacity:0}}
+@media(prefers-reduced-motion:reduce){#laSplash{display:none!important}#laSplash .laSign text{animation:none;fill:#98576e;stroke-dashoffset:0}#laSplash .laPen{display:none}}
+</style>
+<div id="laSplash" role="status" aria-label="Carregando Space LaBelle"><div class="laInner"><div class="laUpper">SPACE</div><div class="laSign">
+<svg viewBox="0 0 430 125" aria-hidden="true"><text x="13" y="90">LaBelle</text></svg>
+<svg class="laPen" viewBox="0 0 140 65" aria-hidden="true"><path d="M8 34 43 23 43 45Z" fill="#e5b89f"/><path d="M8 34 20 30 20 38Z" fill="#59414c"/><rect x="42" y="22" width="94" height="23" rx="10" fill="#b9738e"/><rect x="49" y="23" width="80" height="5" rx="2" fill="#e7b7c8"/><path d="M62 22V45" stroke="#dbb88f" stroke-width="8"/></svg>
+</div><div class="laSub">BELEZA NAS SUAS MÃOS</div><div class="laBar"></div></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script>
+(function(){
+ const splash=document.getElementById('laSplash');
+ const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ function hide(){if(!splash||splash.classList.contains('done'))return;splash.classList.add('done');setTimeout(function(){splash.remove()},700)}
+ setTimeout(hide,reduced?0:3000);
+ const animated=new WeakSet();
+ function motion(){
+   if(reduced||!window.gsap)return;
+   const publicMode=document.body.classList.contains('public-v2');
+   const selector=publicMode?'#publicV2 .view:not([hidden]) .tilecard,#publicV2 .view:not([hidden]) .panel,#publicV2 .view:not([hidden]) h1':'main.shell section.on .card,main.shell section.on .panel,main.shell section.on h1';
+   const nodes=Array.from(document.querySelectorAll(selector)).filter(function(n){return !animated.has(n)});
+   nodes.forEach(function(n){animated.add(n)});
+   if(nodes.length)window.gsap.fromTo(nodes,{opacity:0,y:16},{opacity:1,y:0,duration:.48,stagger:.035,ease:'power2.out',clearProps:'all'});
+ }
+ document.addEventListener('click',function(e){if(e.target.closest('button,a'))setTimeout(motion,60)});
+ document.addEventListener('change',function(){setTimeout(motion,60)});
+ window.addEventListener('load',function(){setTimeout(motion,100)});
+})();
 </script></body></html>
