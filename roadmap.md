@@ -1,0 +1,13 @@
+# Roadmap
+- [x] Melhorar nitidez dos ângulos da mão em HD sem comprometer a rolagem no celular.
+- [x] Adicionar animações GSAP suaves e destacar as opções do studio.
+- [x] Adicionar agendamento pelo WhatsApp informado e verificar os fluxos.
+- [x] Expandir a apresentação para tela inteira e criar transição para o site.
+- [x] Preparar movimento interpolado em 60 fps e verificar fluidez e retorno.
+- [x] Corrigir o giro ao rolar e verificar avanço e retorno reais do vídeo.
+- [x] Otimizar a composição para celular com unhas em destaque e frases ao lado.
+- [x] Criar entrada visual com cinco etapas de rolagem.
+- [x] Criar catálogo, serviços e seleção de agendamento (prévia sem reservas reais).
+- [x] Verificar navegação, revelação e telas pequenas.
+- [x] Substituir a foto de entrada por um giro da mão controlado pela rolagem.
+- [x] Verificar o movimento e o enquadramento no computador e celular.
