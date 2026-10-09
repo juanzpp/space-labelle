@@ -1,0 +1,49 @@
+name: Recover original Nailé animation assets
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  recover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: migration-naile-source
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch and verify original image files
+        run: |
+          python - <<'PY'
+          import json, pathlib, urllib.request
+          manifests=sorted(pathlib.Path('src/assets').glob('*.webp.asset.json'))
+          print('Image manifests:',len(manifests))
+          assert len(manifests)==136, f'Expected 136 animation images, got {len(manifests)}'
+          out=pathlib.Path('public/assets');out.mkdir(parents=True,exist_ok=True)
+          failures=[]
+          for p in manifests:
+              obj=json.loads(p.read_text())
+              url=obj['url'];name=obj['original_filename']
+              try:
+                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})
+                  with urllib.request.urlopen(req,timeout=30) as resp: data=resp.read()
+                  if len(data)<100 or not data.startswith(b'RIFF') or data[8:12]!=b'WEBP':raise ValueError('not a valid WebP')
+                  (out/name).write_bytes(data)
+                  obj['url']='/assets/'+name
+                  p.write_text(json.dumps(obj,indent=2)+'\\n')
+              except Exception as exc:
+                  failures.append((name,str(exc)))
+          if failures:
+              print('Failed downloads:',len(failures))
+              for name,error in failures[:30]:print(name,error)
+              raise SystemExit('Missing original images; refusing to commit partial assets')
+          print('Verified',len(manifests),'WebP images')
+          PY
+      - name: Commit recovered images to migration branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/assets/*.webp.asset.json public/assets
+          git commit -m 'Vendor verified original animation assets for standalone deployment'
+          git push origin HEAD:migration-naile-source
