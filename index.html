@@ -128,8 +128,11 @@ N('v-cats').innerHTML='';renderCatalog();renderServices();if(location.hash==='#a
 (function(){
  const splash=document.getElementById('laSplash');
  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const firstVisitKey='space-labelle-intro-seen-v1';
+ let seen=false;
+ try{seen=localStorage.getItem(firstVisitKey)==='1';if(!seen)localStorage.setItem(firstVisitKey,'1')}catch(e){try{seen=sessionStorage.getItem(firstVisitKey)==='1';sessionStorage.setItem(firstVisitKey,'1')}catch(ignore){}}
  function hide(){if(!splash||splash.classList.contains('done'))return;splash.classList.add('done');setTimeout(function(){splash.remove()},700)}
- setTimeout(hide,reduced?0:3000);
+ if(seen||reduced){if(splash)splash.remove()}else{setTimeout(hide,3000)}
  const animated=new WeakSet();
  function motion(){
    if(reduced||!window.gsap)return;
